@@ -58,3 +58,12 @@ cat ./maybehere07/.file2
 
 ```find ./ -size 1033c -type f ! -executable``` finds all the files in current directory (```./```), with size 1033c (c specifies bytes). ```-type f``` specifies that we have to find a regular file, not a directory. ```! -executable``` means that the file should not be executable. 
 
+# Level 6 -> Level 7
+```
+cd /
+find ./ -size 33c -user bandit7 -group bandit6
+cat ./var/lib/dpkg/info/bandit7.password
+```
+
+This finds in the entire disk the file with given properties. We get multiple lines of output, but all of them except one give the error "Permission Denied". The only file which does not give any error is ```./var/lib/dpkg/info/bandit7.password```. This file contains the password.
+
