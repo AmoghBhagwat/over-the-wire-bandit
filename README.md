@@ -124,3 +124,32 @@ file data9.bin
 cat data9.bin
 ```
 We first copy the file to working directory, and reverse the hex dump into a new file. Then we check the type of the file and decompress it accordingly until the type of the output file is ASCII text.
+
+# Level 13 -> Level 14
+```
+ssh bandit14@bandit.labs.overthewire.org -i sshkey.private
+cat /etc/bandit_pass/bandit14
+```
+
+Log in to the bandit14 account using the ssh key and get the password for it.
+
+# Level 14 -> Level 15
+```
+telnet localhost 30000
+<enter current password>
+```
+ Sending the given data prints the password to the next level.
+ 
+ # Level 15 -> Level 16
+ ```
+ openssl s_client -connect localhost:30001
+ <enter current password>
+ ```
+ 
+ # Level 16 -> Level 17
+ ```
+ nmap -sV localhost -p 31000-32000
+ openssl s_client -connect localhost:31790
+ ```
+ 
+ This command shows 5 open ports, 2 of them use ssl, and 1 of these 2 has only echo service in it. So the other port is to be used.
